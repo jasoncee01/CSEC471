@@ -1,0 +1,22 @@
+1: ldapsearch -LLL -H ldap://sevenkingdoms.local -D "robb.stark@north.sevenkingdoms.local" -w "sexywolfy" -s sub -b "DC=sevenkingdoms,DC=local" "(objectclass=*)"
+
+2: Enumerate the Domain Admins using LDAP
+ldapsearch -LLL -H ldap://sevenkingdoms.local -D "robb.stark@north.sevenkingdoms.local" -w "sexywolfy" -s sub -b "CN=Domain Admins, CN=Users,DC=sevegdoms,DC=local"
+
+3: Enumerate all SPNs using LDAP
+ldapsearch -LLL -H ldap://sevenkingdoms.local -D "robb.stark@north.sevenkingdoms.local" -w "sexywolfy" -s sub -b "DC=sevenkingdoms, DC=local" "(&(objectClass=user)(objectCategory=user))" | grep servicePrin
+
+4: Enumerate user SPNs
+ldapsearch -LLL -H ldap://sevenkingdoms.local -D "robb.stark@north.sevenkingdoms.local" -w "sexywolfy" -s sub -b "DC=sevenkingdoms, DC=local" "(&(objectClass=user)(objectCategory=user))" | grep servicePrin
+
+5: Enumerate Domain Admins using gowindapsearch
+windapsearch -d sevenkingdoms.local -u "robert.baratheon@sevenkingdoms.local" -p "iamthekingoftheworld" -m domain-admins
+
+6: Enumerate SPNS using gowindapsearch
+indapsearch -d sevenkingdoms.local -u "robert.baratheon@sevenkingdoms.local" -p "iamthekingoftheworld" -m user-spns
+
+7: Enumerate all user objects using the ldap OID
+ldapsearch -LLL -H ldap://sevenkingdoms.local -D "robb.stark@north.sevenkingdoms.local" -w "sexywolfy" -s sub -b "DC=sevenkingdoms, DC=local" "(&(objectclass=User)(memberof:1.2.840.113556.1.4.1941:=CN=Domain Admins,CN=Users,DC=sevenkingdoms,DC=local))"
+
+8:Enumerate all user objects for whom the ldap attibute (admincount=1) is true
+ldapsearch -LLL -H ldap://sevenldapsearch -LLL -H ldap://sevenkingdoms.local -D "robb.stark@north.sevenkingdoms.lingdoms.local -D "robb.stark@north.sevenkingdoms.local" -w "sexywolfy" -s sub -b "DC=sevenkingdoms, DC=local" "(&(objectclass=User)(adminCount=1))" dn | grep -i dn:
